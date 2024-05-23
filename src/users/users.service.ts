@@ -24,7 +24,7 @@ export class UsersService {
   }
 
   findAll(query: UpdateUserDto) {
-    const users = this.listUsers.filter((user: User) => {
+    const users = this.listUsers.filter((user) => {
       for (const key in query) {
         if (user[key] !== query[key]) {
           return false;
@@ -38,10 +38,10 @@ export class UsersService {
   update(username: string, updateUserDto: UpdateUserDto) {
     console.log('updateUserDto', updateUserDto);
     const user = this.listUsers.find((user) => user.username === username);
-    const index = this.listUsers.indexOf(user);
     if (!user) {
       throw new HttpException('User not found', HttpStatus.NOT_FOUND);
     } else {
+      const index = this.listUsers.indexOf(user);
       for (const key in updateUserDto) {
         user[key] = updateUserDto[key];
       }
