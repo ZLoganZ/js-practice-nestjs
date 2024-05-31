@@ -9,6 +9,7 @@ import {
   Query,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
+import { User } from './entities/user.entity';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 
@@ -22,7 +23,7 @@ export class UsersController {
   }
 
   @Get()
-  findAll(@Query() query: UpdateUserDto) {
+  findAll(@Query() query: Partial<User>) {
     return this.usersService.findAll(query);
   }
 
